@@ -11,7 +11,12 @@ import { getProducts, getContent } from "../lib/api.js";
 export default async function HomePage() {
   let products, content;
   try {
-    [products, content] = await Promise.all([getProducts(), getContent()]);
+    // Fetched sequentially, not with Promise.all — firing both requests
+    // concurrently was intermittently causing one or the other to fail
+    // with a spurious 404, alternating between which one broke. This
+    // trades a little speed for reliability.
+    products = await getProducts();
+    content = await getContent();
   } catch (err) {
     // Temporary: surface the real error message instead of Next.js's
     // generic "Application error" page, so we can see exactly what's
