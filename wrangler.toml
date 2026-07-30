@@ -6,3 +6,12 @@ compatibility_flags = ["nodejs_compat"]
 [assets]
 directory = ".open-next/assets"
 binding = "ASSETS"
+
+# Service binding to novi-backend — REQUIRED because both Workers share
+# the same novipetcare.workers.dev zone. Cloudflare does not reliably
+# support plain fetch() between same-zone Workers without this binding;
+# this is what was causing the intermittent 404s. Routes internally,
+# bypassing the public internet.
+[[services]]
+binding = "BACKEND"
+service = "novi-backend"

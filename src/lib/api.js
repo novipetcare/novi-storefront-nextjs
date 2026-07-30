@@ -5,15 +5,18 @@
 // receive fully-rendered HTML with real product/content data already in
 // it, rather than an empty shell that JavaScript fills in afterward.
 //
-// `cache: "no-store"` means every request gets fresh data from the
-// database (reflects admin panel changes immediately) rather than a
-// stale build-time snapshot.
-//
-// Defensive by design: a slow or malformed backend response should never
-// crash the whole page. Every fetch has a timeout, and response parsing
-// tolerates a few different shapes rather than assuming one exact
-// structure.
+// IMPORTANT: novi-storefront-nextjs and novi-backend are both on the
+// same novipetcare.workers.dev zone. Cloudflare does not reliably
+// support plain fetch() between Workers on the same zone — this was the
+// actual cause of the intermittent 404s we saw in testing. The fix is
+// to use the "BACKEND" service binding (declared in wrangler.toml)
+// whenever it's available, which routes the request internally rather
+// than over the public internet. We fall back to a plain fetch only
+// for contexts where the binding isn't available (e.g. local dev
+// without `wrangler dev`), so this still works everywhere.
 // -----------------------------------------------------------------------
+
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://novi-backend.novipetcare.workers.dev";
 const FETCH_TIMEOUT_MS = 10000;
@@ -23,14 +26,31 @@ async function fetchJson(path) {
   const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
 
   try {
-    const res = await fetch(`${BASE_URL}${path}`, { cache: "no-store", signal: controller.signal });
+    let res;
+    let usedBinding = false;
+    try {
+      const { env } = getCloudflareContext();
+      if (env?.BACKEND) {
+        usedBinding = true;
+        res = await env.BACKEND.fetch(`${BASE_URL}${path}`, { signal: controller.signal });
+      }
+    } catch {
+      // getCloudflareContext() isn't available outside the Cloudflare
+      // runtime (e.g. some local/dev contexts) — fall through to a
+      // plain fetch below.
+    }
+
+    if (!usedBinding) {
+      res = await fetch(`${BASE_URL}${path}`, { cache: "no-store", signal: controller.signal });
+    }
+
     if (!res.ok) {
       console.error(`[NOVI storefront] API request failed: ${path} (status ${res.status})`);
       throw new Error(`Backend returned ${res.status} for ${path}`);
     }
     try {
       return await res.json();
-    } catch (parseErr) {
+    } catch {
       console.error(`[NOVI storefront] API request returned invalid JSON: ${path}`);
       throw new Error(`Invalid JSON response from ${path}`);
     }
