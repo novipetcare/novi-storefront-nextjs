@@ -9,7 +9,21 @@ import { getProducts, getContent } from "../lib/api.js";
 // prices, and hero text are ALREADY in the page — nothing needs to wait
 // for JavaScript to load and run first.
 export default async function HomePage() {
-  const [products, content] = await Promise.all([getProducts(), getContent()]);
+  let products, content;
+  try {
+    [products, content] = await Promise.all([getProducts(), getContent()]);
+  } catch (err) {
+    // Temporary: surface the real error message instead of Next.js's
+    // generic "Application error" page, so we can see exactly what's
+    // failing rather than guessing further.
+    return (
+      <main style={{ padding: "2rem", fontFamily: "monospace" }}>
+        <h1>Data fetch failed</h1>
+        <p>{err.message}</p>
+        <pre>{err.stack}</pre>
+      </main>
+    );
+  }
 
   return (
     <main>

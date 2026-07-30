@@ -8,7 +8,8 @@ import ProductDetailClient from "./ProductDetailClient.jsx";
 // modal-based product view could never offer, since it had no URL of
 // its own at all.
 export async function generateMetadata({ params }) {
-  const product = await getProduct(params.id);
+  const { id } = await params;
+  const product = await getProduct(id);
   if (!product) return { title: "Product not found — NOVI" };
 
   return {
@@ -23,7 +24,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function ProductPage({ params }) {
-  const product = await getProduct(params.id);
+  const { id } = await params;
+  const product = await getProduct(id);
   if (!product) notFound();
 
   return (
