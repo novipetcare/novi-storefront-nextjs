@@ -11,21 +11,23 @@ import { getProducts, getContent } from "../lib/api.js";
 export default async function HomePage() {
   let products, content;
   try {
-    // Fetched sequentially, not with Promise.all — firing both requests
-    // concurrently was intermittently causing one or the other to fail
-    // with a spurious 404, alternating between which one broke. This
-    // trades a little speed for reliability.
+    // Fetched sequentially, not with Promise.all — kept this way since
+    // it's proven reliable; the real fix for the earlier flakiness was
+    // the service binding in lib/api.js, not this ordering, but no
+    // reason to change it back now.
     products = await getProducts();
     content = await getContent();
   } catch (err) {
-    // Temporary: surface the real error message instead of Next.js's
-    // generic "Application error" page, so we can see exactly what's
-    // failing rather than guessing further.
+    // Logged for our own debugging, but customers see a calm, on-brand
+    // message instead of a stack trace.
+    console.error("[NOVI storefront] Homepage data fetch failed:", err.message);
     return (
-      <main style={{ padding: "2rem", fontFamily: "monospace" }}>
-        <h1>Data fetch failed</h1>
-        <p>{err.message}</p>
-        <pre>{err.stack}</pre>
+      <main className="maintenance-page">
+        <span className="maintenance-icon" aria-hidden="true">
+          🐾
+        </span>
+        <h1>Site under maintenance</h1>
+        <p>We're preparing something huge. Please check back in a few minutes.</p>
       </main>
     );
   }

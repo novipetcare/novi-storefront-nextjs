@@ -8,16 +8,20 @@ import { getFormulaTheme, getFormulaCode } from "../lib/formulaTheme.js";
 import { hasDiscount, getDiscountPercent } from "../lib/pricing.js";
 
 export default function FormulaCard({ product, index }) {
-  const { addItem } = useCart();
+  const { addItem, items } = useCart();
   const [justAdded, setJustAdded] = useState(false);
   const theme = getFormulaTheme(product.name);
   const showDiscount = hasDiscount(product);
+  // Reflects the REAL cart state, not just a temporary flash — so the
+  // button stays "Added" for as long as the item genuinely is in the
+  // cart, removing any confusion about whether it actually got added.
+  const inCart = items.some((i) => i.id === product.id);
 
   function handleAddToCart(e) {
     e.preventDefault(); // don't navigate when clicking the button inside the link
     addItem(product, 1);
     setJustAdded(true);
-    setTimeout(() => setJustAdded(false), 1600);
+    setTimeout(() => setJustAdded(false), 1200);
   }
 
   return (
@@ -65,11 +69,11 @@ export default function FormulaCard({ product, index }) {
           {showDiscount && <span className="discount-badge">{getDiscountPercent(product)}% off</span>}
         </div>
         <button
-          className={`add-to-cart-btn ${justAdded ? "added" : ""}`}
+          className={`add-to-cart-btn ${justAdded || inCart ? "added" : ""}`}
           onClick={handleAddToCart}
           disabled={product.stock <= 0}
         >
-          {product.stock <= 0 ? "Out of stock" : justAdded ? "Added ✓" : "Add to Cart"}
+          {product.stock <= 0 ? "Out of stock" : inCart ? "Added ✓ (add more)" : "Add to Cart"}
         </button>
       </div>
     </article>
