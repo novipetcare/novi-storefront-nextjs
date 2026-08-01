@@ -4,6 +4,9 @@ import { getContent } from "../../lib/api.js";
 export const metadata = {
   title: "Contact Us — NOVI",
   description: "Get in touch with the NOVI team.",
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 export default async function ContactPage() {

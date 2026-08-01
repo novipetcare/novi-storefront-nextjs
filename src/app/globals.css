@@ -266,7 +266,7 @@ a:focus-visible {
   border-radius: var(--radius);
 }
 .formula-card-body {
-  padding: 1.3rem 1.4rem 1.5rem;
+  padding: 1.3rem 1.4rem 0;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -314,7 +314,7 @@ a:focus-visible {
   justify-content: space-between;
   align-items: center;
   margin-top: auto;
-  padding-top: 0.5rem;
+  padding: 0.5rem 1.4rem 1.5rem;
 }
 .formula-price {
   font-family: var(--font-display);

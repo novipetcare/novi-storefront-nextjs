@@ -4,6 +4,9 @@ import { getContent } from "../../lib/api.js";
 export const metadata = {
   title: "About Us — NOVI",
   description: "Learn about NOVI — premium, India-specific dog care.",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default async function AboutPage() {

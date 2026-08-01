@@ -4,6 +4,9 @@ import { getContent } from "../../lib/api.js";
 export const metadata = {
   title: "Terms & Conditions — NOVI",
   description: "NOVI's terms and conditions.",
+  alternates: {
+    canonical: "/terms-and-conditions",
+  },
 };
 
 export default async function TermsPage() {

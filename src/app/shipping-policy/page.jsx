@@ -4,6 +4,9 @@ import { getContent } from "../../lib/api.js";
 export const metadata = {
   title: "Shipping Policy — NOVI",
   description: "NOVI's shipping policy.",
+  alternates: {
+    canonical: "/shipping-policy",
+  },
 };
 
 export default async function ShippingPolicyPage() {

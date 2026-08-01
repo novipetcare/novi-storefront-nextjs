@@ -4,6 +4,9 @@ import { getContent } from "../../lib/api.js";
 export const metadata = {
   title: "Payment & Refund Policy — NOVI",
   description: "NOVI's payment and refund policy.",
+  alternates: {
+    canonical: "/payment-refund-policy",
+  },
 };
 
 export default async function PaymentRefundPolicyPage() {
