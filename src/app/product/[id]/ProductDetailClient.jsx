@@ -87,10 +87,17 @@ export default function ProductDetailClient({ product }) {
               −
             </button>
             <span>{qty}</span>
-            <button onClick={() => setQty((q) => q + 1)} aria-label="Increase quantity">
+            <button
+              onClick={() => setQty((q) => Math.min(product.stock, q + 1))}
+              disabled={qty >= product.stock}
+              aria-label="Increase quantity"
+            >
               +
             </button>
           </div>
+          {qty >= product.stock && product.stock > 0 && (
+            <span className="hint-text">Only {product.stock} left in stock</span>
+          )}
         </div>
 
         <div className="product-detail-footer">

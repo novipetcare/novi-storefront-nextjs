@@ -37,10 +37,17 @@ export default function CartDrawer() {
                         −
                       </button>
                       <span>{item.qty}</span>
-                      <button onClick={() => updateQty(item.id, item.qty + 1)} aria-label="Increase quantity">
+                      <button
+                        onClick={() => updateQty(item.id, item.qty + 1)}
+                        disabled={item.stock != null && item.qty >= item.stock}
+                        aria-label="Increase quantity"
+                      >
                         +
                       </button>
                     </div>
+                    {item.stock != null && item.qty >= item.stock && (
+                      <span className="hint-text">Max available: {item.stock}</span>
+                    )}
                   </div>
                   <button className="remove-item-btn" onClick={() => removeItem(item.id)} aria-label="Remove item">
                     Remove

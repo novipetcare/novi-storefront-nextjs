@@ -30,9 +30,23 @@ export function CartProvider({ children }) {
     setItems((prev) => {
       const existing = prev.find((i) => i.id === product.id);
       if (existing) {
-        return prev.map((i) => (i.id === product.id ? { ...i, qty: i.qty + qty } : i));
+        // Cap at available stock even when adding to an existing line —
+        // prevents a customer clicking "Add to Cart" repeatedly from
+        // building a cart quantity the store can't actually fulfill.
+        const newQty = Math.min(product.stock ?? Infinity, existing.qty + qty);
+        return prev.map((i) => (i.id === product.id ? { ...i, qty: newQty, stock: product.stock } : i));
       }
-      return [...prev, { id: product.id, name: product.name, price: product.price, image: product.images?.[0], qty }];
+      return [
+        ...prev,
+        {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          image: product.images?.[0],
+          stock: product.stock,
+          qty: Math.min(product.stock ?? Infinity, qty),
+        },
+      ];
     });
   }
 
@@ -42,7 +56,9 @@ export function CartProvider({ children }) {
 
   function updateQty(id, qty) {
     if (qty <= 0) return removeItem(id);
-    setItems((prev) => prev.map((i) => (i.id === id ? { ...i, qty } : i)));
+    setItems((prev) =>
+      prev.map((i) => (i.id === id ? { ...i, qty: Math.min(i.stock ?? Infinity, qty) } : i))
+    );
   }
 
   function clearCart() {
