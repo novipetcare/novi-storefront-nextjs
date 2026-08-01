@@ -5,7 +5,7 @@ export default function FormulaGrid({ products }) {
     <section className="formula-section" id="formulas">
       <div className="section-heading">
         <span className="eyebrow">Shop by need</span>
-        <h2>A formula for every dog.</h2>
+        <h2>Choose your dog's formula.</h2>
       </div>
 
       <div className="formula-grid">

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useCart } from "../../../lib/CartContext.jsx";
 import { getFormulaTheme } from "../../../lib/formulaTheme.js";
 import { hasDiscount, getDiscountPercent } from "../../../lib/pricing.js";
+import { optimizedImageUrl } from "../../../lib/cloudinaryUrl.js";
 
 export default function ProductDetailClient({ product }) {
   const { addItem, setDrawerOpen, items } = useCart();
@@ -32,7 +33,7 @@ export default function ProductDetailClient({ product }) {
           {images.length > 0 ? (
             <Image
               key={activeImageIndex}
-              src={images[activeImageIndex]}
+              src={optimizedImageUrl(images[activeImageIndex], 800)}
               alt={`${product.name} — image ${activeImageIndex + 1}`}
               width={600}
               height={540}
@@ -59,7 +60,7 @@ export default function ProductDetailClient({ product }) {
                 aria-selected={i === activeImageIndex}
                 aria-label={`Show image ${i + 1}`}
               >
-                <Image src={img} alt="" width={70} height={70} />
+                <Image src={optimizedImageUrl(img, 140)} alt="" width={70} height={70} loading="lazy" />
               </button>
             ))}
           </div>

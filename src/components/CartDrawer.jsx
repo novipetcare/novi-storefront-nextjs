@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useCart } from "../lib/CartContext.jsx";
+import { optimizedImageUrl } from "../lib/cloudinaryUrl.js";
 
 export default function CartDrawer() {
   const { items, updateQty, removeItem, totalAmount, isDrawerOpen, setDrawerOpen } = useCart();
@@ -27,7 +28,7 @@ export default function CartDrawer() {
               {items.map((item) => (
                 <div className="cart-item" key={item.id}>
                   <div className="cart-item-image">
-                    {item.image ? <img src={item.image} alt={item.name} /> : <span aria-hidden="true">🐾</span>}
+                    {item.image ? <img src={optimizedImageUrl(item.image, 120)} alt={item.name} loading="lazy" /> : <span aria-hidden="true">🐾</span>}
                   </div>
                   <div className="cart-item-info">
                     <span className="cart-item-name">{item.name}</span>

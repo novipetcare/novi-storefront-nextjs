@@ -60,11 +60,26 @@ export default async function ProductPage({ params }) {
     },
   };
 
+  // Breadcrumb structured data — lets Google show "novipets.in > Product
+  // Name" in the search result instead of the raw URL path.
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: product.name, item: `${SITE_URL}/product/${id}` },
+    ],
+  };
+
   return (
     <main className="product-page">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <ProductDetailClient product={product} />
     </main>

@@ -35,6 +35,12 @@ export const metadata = {
   },
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#2b4433",
+};
+
 // Site-wide structured data — helps search engines understand this is a
 // real business/website (distinct from the per-product structured data
 // added on each product page). Kept minimal and only claims things we

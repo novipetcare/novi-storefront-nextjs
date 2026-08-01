@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useCart } from "../lib/CartContext.jsx";
 import { getFormulaTheme, getFormulaCode } from "../lib/formulaTheme.js";
 import { hasDiscount, getDiscountPercent } from "../lib/pricing.js";
+import { optimizedImageUrl } from "../lib/cloudinaryUrl.js";
 
 export default function FormulaCard({ product, index }) {
   const { addItem, items } = useCart();
@@ -29,7 +30,7 @@ export default function FormulaCard({ product, index }) {
       <Link href={`/product/${product.id}`} className="formula-card-link">
         <div className="formula-card-image">
           {product.images?.[0] ? (
-            <Image src={product.images[0]} alt={product.name} width={400} height={360} />
+            <Image src={optimizedImageUrl(product.images[0], 400)} alt={product.name} width={400} height={360} loading="lazy" />
           ) : (
             <div className="placeholder-bottle" aria-hidden="true">
               <span>{theme.icon}</span>

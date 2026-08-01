@@ -3,6 +3,25 @@ import FormulaGrid from "../components/FormulaGrid.jsx";
 import TrustBar from "../components/TrustBar.jsx";
 import FAQ from "../components/FAQ.jsx";
 import { getProducts, getContent } from "../lib/api.js";
+import { FAQS } from "../lib/faqData.js";
+
+// FAQ structured data — this is what actually makes Google eligible to
+// show your FAQ questions directly in search results (an "FAQ rich
+// result"), not just the page title/description. Built from the same
+// FAQS data the visible FAQ component renders, so they can never drift
+// out of sync with each other.
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
+};
 
 // No "use client" here — this runs on the server. By the time this HTML
 // reaches a browser or a search engine crawler, the product names,
@@ -34,6 +53,7 @@ export default async function HomePage() {
 
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Hero content={content} />
       <FormulaGrid products={products} />
       <TrustBar />
