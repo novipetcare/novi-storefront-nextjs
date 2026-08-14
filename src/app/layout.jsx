@@ -6,6 +6,7 @@ import CartDrawer from "../components/CartDrawer.jsx";
 import EmailPopup from "../components/EmailPopup.jsx";
 import PreorderBanner from "../components/PreorderBanner.jsx";
 import { getContent } from "../lib/api.js";
+import { fraunces, inter } from "../lib/fonts.js";
 
 const SITE_URL = "https://novipets.in";
 
@@ -67,14 +68,8 @@ export default async function RootLayout({ children }) {
   }
 
   return (
-    <html lang="en">
+    <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
         <script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
         <script
           type="application/ld+json"
