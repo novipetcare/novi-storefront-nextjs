@@ -1,4 +1,4 @@
-const SITE_URL = "https://novi-storefront-nextjs.novipetcare.workers.dev";
+const SITE_URL = "https://novipets.in";
 
 // Next.js generates /robots.txt automatically from this file's export.
 export default function robots() {

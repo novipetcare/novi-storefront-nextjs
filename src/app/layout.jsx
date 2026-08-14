@@ -7,7 +7,7 @@ import EmailPopup from "../components/EmailPopup.jsx";
 import PreorderBanner from "../components/PreorderBanner.jsx";
 import { getContent } from "../lib/api.js";
 
-const SITE_URL = "https://novi-storefront-nextjs.novipetcare.workers.dev";
+const SITE_URL = "https://novipets.in";
 
 // This metadata object is what actually gets sent to search engines and
 // social media link previews as real HTML <meta> tags — this is the

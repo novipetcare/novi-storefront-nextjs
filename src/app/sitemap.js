@@ -1,6 +1,6 @@
 import { getProducts } from "../lib/api.js";
 
-const SITE_URL = "https://novi-storefront-nextjs.novipetcare.workers.dev";
+const SITE_URL = "https://novipets.in";
 
 // Next.js generates /sitemap.xml automatically from this file's export.
 export default async function sitemap() {

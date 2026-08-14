@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { getProduct, getContent } from "../../../lib/api.js";
 import ProductDetailClient from "./ProductDetailClient.jsx";
 
-const SITE_URL = "https://novi-storefront-nextjs.novipetcare.workers.dev";
+const SITE_URL = "https://novipets.in";
 
 // This is the single biggest SEO win of the whole rebuild: each product
 // now has its own real, indexable URL (/product/1, /product/2, ...)
