@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useCart } from "../../lib/CartContext.jsx";
 import { clientApi } from "../../lib/clientApi.js";
+
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://novi-backend.novipetcare.workers.dev";
 
 export default function CheckoutPage() {
   const { items, totalAmount, clearCart } = useCart();
@@ -25,6 +27,17 @@ export default function CheckoutPage() {
   const [pincodeLookup, setPincodeLookup] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [preorderText, setPreorderText] = useState("");
+
+  // Fetched client-side (this page has no server-rendered part) — just
+  // for the pre-order note; failing silently here is fine, it just
+  // means the note doesn't show rather than breaking checkout.
+  useEffect(() => {
+    fetch(`${BASE_URL}/api/content`)
+      .then((res) => res.json())
+      .then((data) => setPreorderText(data?.content?.preorder_checkout_text || ""))
+      .catch(() => {});
+  }, []);
 
   function updateField(field, value) {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -214,6 +227,8 @@ export default function CheckoutPage() {
               <input value={form.pet_age} onChange={(e) => updateField("pet_age", e.target.value)} />
             </label>
           </div>
+
+          {preorderText && <p className="preorder-checkout-note">{preorderText}</p>}
 
           {error && <div className="error-text">{error}</div>}
 

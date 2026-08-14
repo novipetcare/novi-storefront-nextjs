@@ -8,7 +8,7 @@ import { getFormulaTheme, getFormulaCode } from "../lib/formulaTheme.js";
 import { hasDiscount, getDiscountPercent } from "../lib/pricing.js";
 import { optimizedImageUrl } from "../lib/cloudinaryUrl.js";
 
-export default function FormulaCard({ product, index }) {
+export default function FormulaCard({ product, index, preorderText }) {
   const { addItem, items } = useCart();
   const [justAdded, setJustAdded] = useState(false);
   const theme = getFormulaTheme(product.name);
@@ -60,6 +60,8 @@ export default function FormulaCard({ product, index }) {
               ))}
             </div>
           )}
+
+          {preorderText && <p className="preorder-product-note">{preorderText}</p>}
         </div>
       </Link>
 

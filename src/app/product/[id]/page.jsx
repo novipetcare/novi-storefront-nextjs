@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getProduct } from "../../../lib/api.js";
+import { getProduct, getContent } from "../../../lib/api.js";
 import ProductDetailClient from "./ProductDetailClient.jsx";
 
 const SITE_URL = "https://novi-storefront-nextjs.novipetcare.workers.dev";
@@ -41,6 +41,13 @@ export default async function ProductPage({ params }) {
   const product = await getProduct(id);
   if (!product) notFound();
 
+  let content = {};
+  try {
+    content = await getContent();
+  } catch {
+    // Non-critical — page still works fine without the preorder note.
+  }
+
   // Product structured data — this is what actually enables Google to
   // show price and stock-availability directly in search results
   // (rich results), rather than just a plain blue link.
@@ -81,7 +88,7 @@ export default async function ProductPage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <ProductDetailClient product={product} />
+      <ProductDetailClient product={product} preorderText={content.preorder_product_text} />
     </main>
   );
 }

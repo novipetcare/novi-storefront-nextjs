@@ -8,7 +8,7 @@ import { getFormulaTheme } from "../../../lib/formulaTheme.js";
 import { hasDiscount, getDiscountPercent } from "../../../lib/pricing.js";
 import { optimizedImageUrl } from "../../../lib/cloudinaryUrl.js";
 
-export default function ProductDetailClient({ product }) {
+export default function ProductDetailClient({ product, preorderText }) {
   const { addItem, setDrawerOpen, items } = useCart();
   const [qty, setQty] = useState(1);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -80,6 +80,8 @@ export default function ProductDetailClient({ product }) {
             ))}
           </div>
         )}
+
+        {preorderText && <p className="preorder-product-note">{preorderText}</p>}
 
         <div className="qty-row">
           <span>Quantity</span>

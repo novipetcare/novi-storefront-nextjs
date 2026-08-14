@@ -4,6 +4,8 @@ import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import CartDrawer from "../components/CartDrawer.jsx";
 import EmailPopup from "../components/EmailPopup.jsx";
+import PreorderBanner from "../components/PreorderBanner.jsx";
+import { getContent } from "../lib/api.js";
 
 const SITE_URL = "https://novi-storefront-nextjs.novipetcare.workers.dev";
 
@@ -53,7 +55,17 @@ const organizationJsonLd = {
   description: "Premium, India-specific dog shampoos — sulphate-free, paraben-free, pH balanced.",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  // Fetched here (not just per-page) so the pre-order banner can show on
+  // every single page, including ones that don't otherwise fetch content.
+  let content = {};
+  try {
+    content = await getContent();
+  } catch {
+    // If the backend is briefly unavailable, just skip the banner rather
+    // than fail the entire layout over it.
+  }
+
   return (
     <html lang="en">
       <head>
@@ -70,6 +82,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
+        <PreorderBanner content={content} />
         <CartProvider>
           <Header />
           {children}

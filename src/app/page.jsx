@@ -55,7 +55,7 @@ export default async function HomePage() {
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Hero content={content} />
-      <FormulaGrid products={products} />
+      <FormulaGrid products={products} preorderText={content.preorder_product_text} />
       <TrustBar />
       <FAQ />
     </main>

@@ -1,6 +1,6 @@
 import FormulaCard from "./FormulaCard.jsx";
 
-export default function FormulaGrid({ products }) {
+export default function FormulaGrid({ products, preorderText }) {
   return (
     <section className="formula-section" id="formulas">
       <div className="section-heading">
@@ -10,7 +10,7 @@ export default function FormulaGrid({ products }) {
 
       <div className="formula-grid">
         {products.map((product, index) => (
-          <FormulaCard key={product.id} product={product} index={index} />
+          <FormulaCard key={product.id} product={product} index={index} preorderText={preorderText} />
         ))}
       </div>
     </section>
