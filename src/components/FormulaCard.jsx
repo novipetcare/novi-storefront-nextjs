@@ -30,7 +30,7 @@ export default function FormulaCard({ product, index, preorderText }) {
       <Link href={`/product/${product.id}`} className="formula-card-link">
         <div className="formula-card-image">
           {product.images?.[0] ? (
-            <Image src={optimizedImageUrl(product.images[0], 400)} alt={product.name} width={400} height={360} loading="lazy" />
+            <Image src={optimizedImageUrl(product.images[0], 400)} alt={product.name} width={400} height={360} priority={index === 0} />
           ) : (
             <div className="placeholder-bottle" aria-hidden="true">
               <span>{theme.icon}</span>
