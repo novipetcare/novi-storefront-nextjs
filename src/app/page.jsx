@@ -1,5 +1,7 @@
 import Hero from "../components/Hero.jsx";
+import RangeBanner from "../components/RangeBanner.jsx";
 import FormulaGrid from "../components/FormulaGrid.jsx";
+import TrustBadges from "../components/TrustBadges.jsx";
 import TrustBar from "../components/TrustBar.jsx";
 import FAQ from "../components/FAQ.jsx";
 import ReviewTiles from "../components/ReviewTiles.jsx";
@@ -57,7 +59,9 @@ export default async function HomePage() {
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Hero content={content} />
+      <RangeBanner />
       <FormulaGrid products={products} />
+      <TrustBadges />
       <TrustBar />
       <ReviewTiles reviews={HOME_REVIEWS} title="Our early users" subtitle="Loved by pet parents across India" />
       <FAQ />

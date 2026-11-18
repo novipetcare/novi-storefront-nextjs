@@ -1,5 +1,7 @@
 // Five brand promises shown as icon pills under the hero headline.
 // Icons are simple inline SVG line drawings (no image files to load).
+import CrueltyFreeIcon from "./CrueltyFreeIcon.jsx";
+
 const ICON_PROPS = {
   width: 22,
   height: 22,
@@ -44,13 +46,7 @@ const TAGS = [
   },
   {
     label: "Cruelty-Free",
-    icon: (
-      <svg {...ICON_PROPS}>
-        <path d="M9 3.5c-1.4 0-2.2 2-2.2 5v2.2M15 3.5c1.4 0 2.2 2 2.2 5v2.2" />
-        <circle cx="12" cy="14.5" r="5.5" />
-        <path d="M10 14.3h.01M14 14.3h.01M11 16.8c.6.5 1.4.5 2 0" />
-      </svg>
-    ),
+    icon: <CrueltyFreeIcon />,
   },
   {
     label: "Made in India",

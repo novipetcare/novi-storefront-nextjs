@@ -220,6 +220,13 @@ export default function CheckoutPage() {
           <button type="submit" className="checkout-btn" disabled={submitting}>
             {submitting ? "Processing..." : `Pay Now — ₹${(totalAmount / 100).toFixed(0)}`}
           </button>
+          <p className="secure-note">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="4.5" y="10.5" width="15" height="10" rx="2" />
+              <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" />
+            </svg>
+            100% Secure Payments · Encrypted checkout via Razorpay
+          </p>
           <p className="hint-text payment-note">Secure payment powered by Razorpay.</p>
         </form>
 
