@@ -1247,3 +1247,45 @@ a:focus-visible {
 .trust-item-icon { display: inline-flex; align-items: center; }
 .trust-peta-link { color: inherit; opacity: 0.85; text-decoration: underline; text-underline-offset: 3px; }
 .trust-peta-link:hover { opacity: 1; }
+
+/* ---- Credibility badges (under product cards) ---- */
+.trust-badges {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem 1.5rem 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: var(--white);
+  border: 1px solid var(--cream-dark);
+  border-radius: var(--radius);
+  padding: 0.9rem 1.1rem;
+}
+.trust-badge-icon {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--forest);
+  color: var(--cream);
+}
+.trust-badge strong {
+  display: block;
+  color: var(--forest);
+  font-size: 0.95rem;
+}
+.trust-badge span span,
+.trust-badge div > span {
+  display: block;
+  color: var(--ink-muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
