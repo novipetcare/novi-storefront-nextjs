@@ -4,8 +4,6 @@ import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import CartDrawer from "../components/CartDrawer.jsx";
 import EmailPopup from "../components/EmailPopup.jsx";
-import PreorderBanner from "../components/PreorderBanner.jsx";
-import { getContent } from "../lib/api.js";
 import { fraunces, inter } from "../lib/fonts.js";
 
 const SITE_URL = "https://novipets.in";
@@ -57,16 +55,6 @@ const organizationJsonLd = {
 };
 
 export default async function RootLayout({ children }) {
-  // Fetched here (not just per-page) so the pre-order banner can show on
-  // every single page, including ones that don't otherwise fetch content.
-  let content = {};
-  try {
-    content = await getContent();
-  } catch {
-    // If the backend is briefly unavailable, just skip the banner rather
-    // than fail the entire layout over it.
-  }
-
   return (
     <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
       <head>
@@ -77,7 +65,6 @@ export default async function RootLayout({ children }) {
         />
       </head>
       <body>
-        <PreorderBanner content={content} />
         <CartProvider>
           <Header />
           {children}
