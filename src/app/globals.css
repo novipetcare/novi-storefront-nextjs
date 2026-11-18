@@ -1299,3 +1299,18 @@ a:focus-visible {
   font-size: 0.82rem;
   color: var(--ink-muted);
 }
+
+/* ---- Shop by your dog's need ---- */
+.need-tiles { max-width: var(--max-width); margin: 0 auto; padding: 3rem 1.5rem 1rem; }
+.need-tiles-title { font-family: var(--font-display); color: var(--forest); text-align: center; font-size: clamp(1.6rem, 3vw, 2.1rem); margin: 0 0 0.5rem; }
+.need-tiles-sub { text-align: center; color: var(--ink-muted); margin: 0 0 2rem; }
+.need-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+.need-tile { display: flex; flex-direction: column; gap: 0.45rem; padding: 1.3rem; background: var(--white); border: 1px solid var(--cream-dark); border-radius: var(--radius); text-decoration: none; color: var(--ink); transition: transform .2s ease, box-shadow .2s ease; }
+.need-tile:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.need-icon { display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 50%; background: var(--forest); color: var(--cream); margin-bottom: 0.3rem; }
+.need-tile strong { color: var(--forest); font-size: 1.05rem; }
+.need-text { color: var(--ink-muted); font-size: 0.9rem; line-height: 1.5; flex: 1; }
+.need-go { color: var(--saffron-hover); font-weight: 600; font-size: 0.88rem; }
+@media (max-width: 900px) { .need-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .need-grid { grid-template-columns: 1fr; } .need-tiles { padding-top: 2rem; } }
+@media (prefers-reduced-motion: reduce) { .need-tile { transition: none; } .need-tile:hover { transform: none; } }
