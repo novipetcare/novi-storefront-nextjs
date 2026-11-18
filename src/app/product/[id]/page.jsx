@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
-import { getProduct, getReviews } from "../../../lib/api.js";
+import { getProduct } from "../../../lib/api.js";
+import { PRODUCT_REVIEWS } from "../../../lib/reviewsData.js";
 import ReviewTiles from "../../../components/ReviewTiles.jsx";
 import ProductDetailClient from "./ProductDetailClient.jsx";
 
@@ -41,7 +42,7 @@ export default async function ProductPage({ params }) {
   const { id } = await params;
   const product = await getProduct(id);
   if (!product) notFound();
-  const reviews = await getReviews({ productId: product.id });
+  const reviews = PRODUCT_REVIEWS[String(product.id)] || [];
 
   // Product structured data — this is what actually enables Google to
   // show price and stock-availability directly in search results

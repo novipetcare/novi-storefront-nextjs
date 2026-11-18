@@ -3,7 +3,8 @@ import FormulaGrid from "../components/FormulaGrid.jsx";
 import TrustBar from "../components/TrustBar.jsx";
 import FAQ from "../components/FAQ.jsx";
 import ReviewTiles from "../components/ReviewTiles.jsx";
-import { getProducts, getContent, getReviews } from "../lib/api.js";
+import { HOME_REVIEWS } from "../lib/reviewsData.js";
+import { getProducts, getContent } from "../lib/api.js";
 import { FAQS } from "../lib/faqData.js";
 
 // FAQ structured data — this is what actually makes Google eligible to
@@ -52,15 +53,13 @@ export default async function HomePage() {
     );
   }
 
-  const reviews = await getReviews({ home: true });
-
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Hero content={content} />
       <FormulaGrid products={products} />
       <TrustBar />
-      <ReviewTiles reviews={reviews} title="Our early users" subtitle="Loved by pet parents across India" />
+      <ReviewTiles reviews={HOME_REVIEWS} title="Our early users" subtitle="Loved by pet parents across India" />
       <FAQ />
     </main>
   );
