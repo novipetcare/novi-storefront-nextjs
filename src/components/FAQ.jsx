@@ -25,7 +25,17 @@ export default function FAQ() {
               {item.q}
               <span className="faq-toggle">{openIndex === i ? "−" : "+"}</span>
             </button>
-            {openIndex === i && <p className="faq-answer">{item.a}</p>}
+            {openIndex === i && (
+              <p className="faq-answer">
+                {item.a}
+                {item.link && (
+                  <>
+                    {" "}
+                    <a href={item.link.href} target="_blank" rel="noopener noreferrer" className="faq-link">{item.link.label}</a>
+                  </>
+                )}
+              </p>
+            )}
           </div>
         ))}
       </div>

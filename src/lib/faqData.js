@@ -17,7 +17,7 @@ export const FAQS = [
   { group: "Ingredients", q: "Why is NOVI made for Indian hard water?", a: "Most Indian homes bathe their dogs in hard water. NOVI is formulated to work in it, and we tested it with 100 early users." },
 
   // Trust
-  { group: "Trust", q: "Is NOVI cruelty-free?", a: "Yes. NOVI is listed on PETA's cruelty-free database, and we do not test on animals." },
-  { group: "Trust", q: "Is payment secure?", a: "Yes. Payments are processed through Razorpay's encrypted checkout." },
+  { group: "Trust", q: "Is NOVI cruelty-free?", a: "Yes. NOVI is listed on PETA's cruelty-free database, and we do not test on animals.", link: { href: "https://crueltyfree.peta.org/company/novi/", label: "See our PETA listing" } },
+  { group: "Trust", q: "Is payment secure?", a: "Yes. Your payment is processed through an encrypted, secure checkout, and we never see or store your card details." },
   { group: "Trust", q: "Do you supply vets and groomers?", a: "Yes. If you run a clinic or grooming studio, get in touch with us for trade terms." },
 ];

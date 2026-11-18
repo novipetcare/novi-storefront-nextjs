@@ -1446,3 +1446,4 @@ h1, h2, h3 { font-weight: 400; }
 /* FAQ groups */
 .faq-group { font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; color: var(--forest); margin: 1.8rem 0 0.4rem; }
 .faq-list > .faq-item:first-child .faq-group { margin-top: 0; }
+.faq-link { color: var(--forest); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
