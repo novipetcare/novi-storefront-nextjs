@@ -1178,6 +1178,11 @@ a:focus-visible {
   font-size: clamp(1.6rem, 3vw, 2.1rem);
   margin: 0 0 2rem;
 }
+.reviews-subtitle {
+  text-align: center;
+  color: var(--ink-muted);
+  margin: -1.2rem 0 2rem;
+}
 .review-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

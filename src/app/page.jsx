@@ -60,7 +60,7 @@ export default async function HomePage() {
       <Hero content={content} />
       <FormulaGrid products={products} />
       <TrustBar />
-      <ReviewTiles reviews={reviews} title="Loved by pet parents across India" />
+      <ReviewTiles reviews={reviews} title="Our early users" subtitle="Loved by pet parents across India" />
       <FAQ />
     </main>
   );

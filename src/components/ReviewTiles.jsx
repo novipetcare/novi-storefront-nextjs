@@ -11,11 +11,12 @@ function Stars({ rating }) {
   );
 }
 
-export default function ReviewTiles({ reviews, title }) {
+export default function ReviewTiles({ reviews, title, subtitle }) {
   if (!reviews || reviews.length === 0) return null;
   return (
     <section className="reviews-section">
       <h2 className="reviews-title">{title}</h2>
+      {subtitle ? <p className="reviews-subtitle">{subtitle}</p> : null}
       <div className="review-grid">
         {reviews.map((r) => (
           <figure className="review-tile" key={r.id}>
@@ -23,7 +24,9 @@ export default function ReviewTiles({ reviews, title }) {
             <blockquote className="review-text">“{r.review_text}”</blockquote>
             <figcaption className="review-by">
               <strong>{r.reviewer_name}</strong>
-              {r.dog_breed ? <span> · {r.dog_breed} parent</span> : null}
+              {r.dog_name || r.dog_breed ? (
+                <span> · {[r.dog_name, r.dog_breed].filter(Boolean).join(", ")}</span>
+              ) : null}
             </figcaption>
           </figure>
         ))}

@@ -84,7 +84,7 @@ export default async function ProductPage({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <ProductDetailClient product={product} />
-      <ReviewTiles reviews={reviews} title="What pet parents say" />
+      <ReviewTiles reviews={reviews} title="Our early users" subtitle="What pet parents say about this shampoo" />
     </main>
   );
 }
