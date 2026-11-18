@@ -2,6 +2,8 @@ import Hero from "../components/Hero.jsx";
 import FormulaGrid from "../components/FormulaGrid.jsx";
 import TrustBar from "../components/TrustBar.jsx";
 import FAQ from "../components/FAQ.jsx";
+import ReviewTiles from "../components/ReviewTiles.jsx";
+import { HOME_REVIEWS } from "../lib/reviewsData.js";
 import { getProducts, getContent } from "../lib/api.js";
 import { FAQS } from "../lib/faqData.js";
 
@@ -57,6 +59,7 @@ export default async function HomePage() {
       <Hero content={content} />
       <FormulaGrid products={products} />
       <TrustBar />
+      <ReviewTiles reviews={HOME_REVIEWS} title="Our early users" subtitle="Loved by pet parents across India" />
       <FAQ />
     </main>
   );

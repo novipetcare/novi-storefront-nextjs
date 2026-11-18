@@ -2,6 +2,7 @@ main = ".open-next/worker.js"
 name = "novi-storefront-nextjs"
 compatibility_date = "2026-07-30"
 compatibility_flags = ["nodejs_compat"]
+preview_urls = true
 
 [assets]
 directory = ".open-next/assets"
@@ -13,5 +14,12 @@ binding = "ASSETS"
 # this is what was causing the intermittent 404s. Routes internally,
 # bypassing the public internet.
 [[services]]
+binding = "BACKEND"
+service = "novi-backend"
+
+# Worker Previews (branch previews, e.g. staging). Previews do not inherit
+# production settings, so the backend binding is repeated here. A Preview calls
+# the PRODUCTION backend: never place real orders on a preview.
+[[previews.services]]
 binding = "BACKEND"
 service = "novi-backend"

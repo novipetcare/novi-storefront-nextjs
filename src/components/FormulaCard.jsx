@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "../lib/CartContext.jsx";
@@ -18,6 +18,39 @@ export default function FormulaCard({ product, index }) {
   // cart, removing any confusion about whether it actually got added.
   const inCart = items.some((i) => i.id === product.id);
 
+  // Photo slider: on hover (desktop) the photos slide by themselves; on touch
+  // screens people swipe. Cards with a single photo get a gentle zoom instead.
+  const images = product.images || [];
+  const trackRef = useRef(null);
+  const [hovering, setHovering] = useState(false);
+  const [slide, setSlide] = useState(0);
+
+  function goTo(i) {
+    const el = trackRef.current;
+    if (!el) return;
+    el.scrollTo({ left: i * el.clientWidth, behavior: "smooth" });
+  }
+
+  useEffect(() => {
+    if (images.length < 2) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!hovering) {
+      goTo(0);
+      return;
+    }
+    let i = 0;
+    const timer = setInterval(() => {
+      i = (i + 1) % images.length;
+      goTo(i);
+    }, 1100);
+    return () => clearInterval(timer);
+  }, [hovering, images.length]);
+
+  function handleScroll(e) {
+    const el = e.currentTarget;
+    setSlide(Math.round(el.scrollLeft / Math.max(el.clientWidth, 1)));
+  }
+
   function handleAddToCart(e) {
     e.preventDefault(); // don't navigate when clicking the button inside the link
     addItem(product, 1);
@@ -26,11 +59,32 @@ export default function FormulaCard({ product, index }) {
   }
 
   return (
-    <article className="formula-card">
+    <article className="formula-card" onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)}>
       <Link href={`/product/${product.id}`} className="formula-card-link">
-        <div className="formula-card-image">
-          {product.images?.[0] ? (
-            <Image src={optimizedImageUrl(product.images[0], 400)} alt={product.name} width={400} height={360} priority={index === 0} />
+        <div className={`formula-card-image ${images.length > 1 ? "has-slides" : ""}`}>
+          {images.length > 0 ? (
+            <>
+              <div className="slide-track" ref={trackRef} onScroll={handleScroll}>
+                {images.map((src, n) => (
+                  <div className="slide" key={src + n}>
+                    <Image
+                      src={optimizedImageUrl(src, 400)}
+                      alt={n === 0 ? product.name : `${product.name} - photo ${n + 1}`}
+                      width={400}
+                      height={360}
+                      priority={index === 0 && n === 0}
+                    />
+                  </div>
+                ))}
+              </div>
+              {images.length > 1 && (
+                <div className="slide-dots" aria-hidden="true">
+                  {images.map((_, n) => (
+                    <span key={n} className={n === slide ? "dot active" : "dot"} />
+                  ))}
+                </div>
+              )}
+            </>
           ) : (
             <div className="placeholder-bottle" aria-hidden="true">
               <span>{theme.icon}</span>
@@ -48,6 +102,7 @@ export default function FormulaCard({ product, index }) {
             </span>
           </div>
 
+          {theme.label && <span className="formula-kind">Dog shampoo</span>}
           <h3>{product.name}</h3>
           <p className="formula-desc">{product.description}</p>
 

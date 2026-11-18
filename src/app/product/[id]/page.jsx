@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 import { getProduct } from "../../../lib/api.js";
+import { PRODUCT_REVIEWS } from "../../../lib/reviewsData.js";
+import ReviewTiles from "../../../components/ReviewTiles.jsx";
 import ProductDetailClient from "./ProductDetailClient.jsx";
 
 const SITE_URL = "https://novipets.in";
@@ -40,6 +42,7 @@ export default async function ProductPage({ params }) {
   const { id } = await params;
   const product = await getProduct(id);
   if (!product) notFound();
+  const reviews = PRODUCT_REVIEWS[String(product.id)] || [];
 
   // Product structured data — this is what actually enables Google to
   // show price and stock-availability directly in search results
@@ -82,6 +85,7 @@ export default async function ProductPage({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <ProductDetailClient product={product} />
+      <ReviewTiles reviews={reviews} title="Our early users" subtitle="What pet parents say about this shampoo" />
     </main>
   );
 }
