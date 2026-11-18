@@ -1164,3 +1164,61 @@ a:focus-visible {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* ---- Customer reviews (tiles) ---- */
+.reviews-section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+.reviews-title {
+  font-family: var(--font-display);
+  color: var(--forest);
+  text-align: center;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  margin: 0 0 2rem;
+}
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.review-tile {
+  margin: 0;
+  background: var(--white);
+  border: 1px solid var(--cream-dark);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.4rem 1.4rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.review-stars {
+  color: var(--saffron);
+  letter-spacing: 0.12em;
+  font-size: 1.05rem;
+}
+.review-stars-off {
+  color: var(--cream-dark);
+}
+.review-text {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  flex: 1;
+}
+.review-by {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}
+.review-by strong {
+  color: var(--forest);
+}
+@media (max-width: 900px) {
+  .review-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .review-grid { grid-template-columns: 1fr; }
+}

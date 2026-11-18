@@ -103,4 +103,19 @@ export async function getContent() {
   return data?.content ?? data?.data?.content ?? data ?? {};
 }
 
+// Reviews are optional page furniture: if the endpoint is missing or fails
+// (for example before the backend is updated), the page simply shows no
+// reviews instead of breaking.
+export async function getReviews({ home = false, productId = null } = {}) {
+  try {
+    const qs = new URLSearchParams();
+    if (home) qs.set("home", "true");
+    if (productId) qs.set("product_id", String(productId));
+    const data = await fetchJson(`/api/reviews${qs.toString() ? "?" + qs : ""}`);
+    return extractArray(data, "reviews");
+  } catch {
+    return [];
+  }
+}
+
 export { BASE_URL };
