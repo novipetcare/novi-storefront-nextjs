@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-// "Shop by your dog's need": six situations an owner recognises, each linking
+// "What does bath day look like at your place?": six situations an owner recognises, each linking
 // to the right product. Wording stays on cleaning, coat feel, fragrance and
 // ease of use (no treatment or tick/flea efficacy claims).
 // Product ids: 1 = F01 Tick & Flea Defence, 2 = F02 Neem & Oat Everyday, 3 = F03 Puppy & Sensitive.
@@ -51,8 +51,8 @@ const NEEDS = [
 export default function NeedTiles() {
   return (
     <section className="need-tiles">
-      <h2 className="need-tiles-title">Shop by your dog's need</h2>
-      <p className="need-tiles-sub">Tell us what your dog needs and we'll point you to the right shampoo.</p>
+      <h2 className="need-tiles-title">What does bath day look like at your place?</h2>
+      <p className="need-tiles-sub">Pick the one that sounds like your dog and we'll point you to the right shampoo.</p>
       <div className="need-grid">
         {NEEDS.map((n) => (
           <Link href={n.href} className="need-tile" key={n.title}>
