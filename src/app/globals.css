@@ -1442,3 +1442,7 @@ h1, h2, h3 { font-weight: 400; }
 
 /* Round 3c: second headline on one line (desktop/tablet); wraps on phones so it stays readable */
 @media (min-width: 700px) { .hero-v2 .hero-title-2 { max-width: none; white-space: nowrap; font-size: clamp(0.95rem, 2.1vw, 1.3rem); } }
+
+/* FAQ groups */
+.faq-group { font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; color: var(--forest); margin: 1.8rem 0 0.4rem; }
+.faq-list > .faq-item:first-child .faq-group { margin-top: 0; }

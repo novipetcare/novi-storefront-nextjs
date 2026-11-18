@@ -16,6 +16,7 @@ export default function FAQ() {
       <div className="faq-list">
         {FAQS.map((item, i) => (
           <div className="faq-item" key={item.q}>
+            {(i === 0 || FAQS[i - 1].group !== item.group) && <h3 className="faq-group">{item.group}</h3>}
             <button
               className="faq-question"
               onClick={() => setOpenIndex(openIndex === i ? null : i)}
