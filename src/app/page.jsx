@@ -1,5 +1,7 @@
 import Hero from "../components/Hero.jsx";
 import RangeBanner from "../components/RangeBanner.jsx";
+import RoutinePicker from "../components/RoutinePicker.jsx";
+import RoutineSteps from "../components/RoutineSteps.jsx";
 import NeedTiles from "../components/NeedTiles.jsx";
 import FormulaGrid from "../components/FormulaGrid.jsx";
 import TrustBadges from "../components/TrustBadges.jsx";
@@ -62,8 +64,10 @@ export default async function HomePage() {
       <Hero content={content} />
       <RangeBanner />
       <NeedTiles />
+      <RoutinePicker products={products} />
       <FormulaGrid products={products} />
       <TrustBadges />
+      <RoutineSteps />
       <TrustBar />
       <ReviewTiles reviews={HOME_REVIEWS} title="Our early users" subtitle="Loved by pet parents across India" />
       <FAQ />
