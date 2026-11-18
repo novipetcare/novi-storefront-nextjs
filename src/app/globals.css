@@ -1314,3 +1314,25 @@ a:focus-visible {
 @media (max-width: 900px) { .need-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .need-grid { grid-template-columns: 1fr; } .need-tiles { padding-top: 2rem; } }
 @media (prefers-reduced-motion: reduce) { .need-tile { transition: none; } .need-tile:hover { transform: none; } }
+
+/* ---- Bath routine (static strip + picker) ---- */
+.routine-steps, .routine-picker { max-width: var(--max-width); margin: 0 auto; padding: 2rem 1.5rem; }
+.routine-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
+.routine-step { display: flex; flex-direction: column; gap: 0.4rem; padding: 1.3rem; background: var(--white); border: 1px solid var(--cream-dark); border-radius: var(--radius); }
+.routine-num { color: var(--saffron-hover); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.routine-step strong { color: var(--forest); font-size: 1.05rem; }
+@media (max-width: 900px) { .routine-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .routine-grid { grid-template-columns: 1fr; } }
+.picker-card { max-width: 760px; margin: 0 auto; background: var(--white); border: 1px solid var(--cream-dark); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.6rem; display: flex; flex-direction: column; gap: 1.2rem; }
+.picker-q strong { color: var(--forest); display: block; margin-bottom: 0.55rem; }
+.picker-opts { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.picker-opt { padding: 0.55rem 1rem; border-radius: 999px; border: 1.5px solid var(--cream-dark); background: var(--cream); color: var(--ink); font: inherit; cursor: pointer; }
+.picker-opt:hover { border-color: var(--forest); }
+.picker-opt.on { background: var(--forest); color: var(--cream); border-color: var(--forest); }
+.picker-result { border-top: 1px solid var(--cream-dark); padding-top: 1.2rem; }
+.picker-result h3 { font-family: var(--font-display); color: var(--forest); margin: 0 0 0.5rem; }
+.picker-pick { margin: 0 0 0.6rem; }
+.picker-steps { margin: 0 0 0.8rem; padding-left: 1.2rem; color: var(--ink); line-height: 1.7; }
+.picker-tip { margin: 0.2rem 0; color: var(--ink-muted); font-size: 0.92rem; }
+.picker-actions { display: flex; align-items: center; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
+.picker-link { color: var(--saffron-hover); font-weight: 600; text-decoration: none; }
