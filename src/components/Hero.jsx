@@ -1,11 +1,11 @@
-import Image from "next/image";
 import TrustTags from "./TrustTags.jsx";
 
-// Two-column hero: words on the left, the three bottles on the right.
+// Words on a clean light background, then the three bottles as a full-width
+// banner directly underneath (wide image on desktop, closer crop on phones).
 export default function Hero({ content }) {
   return (
-    <section className="hero hero-v2">
-      <div className="hero-v2-grid">
+    <>
+      <section className="hero hero-v2">
         <div className="hero-v2-text">
           <h1 className="hero-title">{content.hero_title || "A formula for every dog."}</h1>
           <h2 className="hero-title-2">
@@ -19,18 +19,20 @@ export default function Hero({ content }) {
             Find your dog&apos;s formula
           </a>
         </div>
-        <div className="hero-v2-art">
-          <Image
-            src="/images/novi-range-banner-mobile.webp"
-            width={900}
-            height={809}
-            priority
-            sizes="(max-width: 860px) 92vw, 520px"
+      </section>
+      <div className="hero-stage">
+        <picture>
+          <source media="(max-width: 700px)" srcSet="/images/novi-range-banner-mobile.webp" width="900" height="809" />
+          <img
+            src="/images/novi-range-banner.webp"
+            width="1944"
+            height="809"
             alt="NOVI dog shampoo range: Tick & Flea Defence, Neem & Oats Everyday and Puppy & Sensitive"
-            className="hero-v2-img"
+            className="hero-stage-img"
+            fetchPriority="high"
           />
-        </div>
+        </picture>
       </div>
-    </section>
+    </>
   );
 }
