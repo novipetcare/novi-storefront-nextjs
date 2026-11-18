@@ -1,5 +1,6 @@
 import Hero from "../components/Hero.jsx";
 import RangeBanner from "../components/RangeBanner.jsx";
+import NeedTiles from "../components/NeedTiles.jsx";
 import FormulaGrid from "../components/FormulaGrid.jsx";
 import TrustBadges from "../components/TrustBadges.jsx";
 import TrustBar from "../components/TrustBar.jsx";
@@ -60,6 +61,7 @@ export default async function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Hero content={content} />
       <RangeBanner />
+      <NeedTiles />
       <FormulaGrid products={products} />
       <TrustBadges />
       <TrustBar />
