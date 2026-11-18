@@ -1436,3 +1436,6 @@ h1, h2, h3 { font-weight: 400; }
 .hero-stage { background: var(--forest); line-height: 0; }
 .hero-stage-img { display: block; width: 100%; max-width: 1800px; height: auto; margin: 0 auto; }
 @media (max-width: 860px) { .hero.hero-v2 { padding: 2rem 1.25rem 1.6rem; } .hero-v2 .hero-title { max-width: none; } }
+
+/* Round 3b: hero headline on a single line */
+.hero-v2 .hero-title { max-width: none; white-space: nowrap; text-wrap: nowrap; font-size: clamp(1.6rem, 7.2vw, 3.6rem); }
