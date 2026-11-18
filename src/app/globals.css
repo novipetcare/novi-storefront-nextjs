@@ -1439,3 +1439,6 @@ h1, h2, h3 { font-weight: 400; }
 
 /* Round 3b: hero headline on a single line */
 .hero-v2 .hero-title { max-width: none; white-space: nowrap; text-wrap: nowrap; font-size: clamp(1.6rem, 7.2vw, 3.6rem); }
+
+/* Round 3c: second headline on one line (desktop/tablet); wraps on phones so it stays readable */
+@media (min-width: 700px) { .hero-v2 .hero-title-2 { max-width: none; white-space: nowrap; font-size: clamp(0.95rem, 2.1vw, 1.3rem); } }
