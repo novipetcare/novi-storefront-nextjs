@@ -7,7 +7,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
 
   return (
-    <section className="faq-section">
+    <section className="faq-section" id="faq">
       <div className="section-heading">
         <span className="eyebrow">Questions</span>
         <h2>Good to know.</h2>

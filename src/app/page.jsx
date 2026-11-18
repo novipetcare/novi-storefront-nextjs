@@ -62,9 +62,8 @@ export default async function HomePage() {
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Hero content={content} />
-      <PawTrail variant="mud" />
-      <NeedTiles />
       <PawTrail variant="mixed" />
+      <NeedTiles />
       <RoutinePicker products={products} />
       <PawTrail variant="clean" />
       <FormulaGrid products={products} />

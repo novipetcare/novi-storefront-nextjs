@@ -33,7 +33,7 @@ export default function RoutinePicker({ products }) {
   const product = done ? products.find((p) => p.id === pick(a)) : null;
 
   return (
-    <section className="routine-picker">
+    <section className="routine-picker" id="routine">
       <h2 className="need-tiles-title">Build your dog's bath routine</h2>
       <p className="need-tiles-sub">Three quick taps and we'll recommend the shampoo and the steps.</p>
       <div className="picker-card">

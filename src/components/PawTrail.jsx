@@ -7,8 +7,8 @@
 import { useEffect, useRef, useState } from "react";
 
 // Nine prints in a gentle, slightly sloping walk: left and right feet alternate.
-const POS = Array.from({ length: 9 }, (_, i) => ({
-  x: 6 + i * 11.5,
+const POS = Array.from({ length: 8 }, (_, i) => ({
+  x: 8 + i * 12.6,
   y: 50 + (i % 2 ? 13 : -13) + (i - 4) * 2.2,
   r: 90 + (i % 2 ? 7 : -7),
 }));

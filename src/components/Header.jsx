@@ -13,6 +13,13 @@ export default function Header() {
         <Image src="/logo.png" alt="" width={34} height={34} className="logo-icon" priority />
         <span className="logo-text">NOVI</span>
       </Link>
+      <nav className="site-nav" aria-label="Main">
+        <Link href="/#needs">Shop by need</Link>
+        <Link href="/#formulas">Shampoos</Link>
+        <Link href="/#routine">Bath routine</Link>
+        <Link href="/#reviews">Early users</Link>
+        <Link href="/#faq">FAQ</Link>
+      </nav>
       <button className="cart-toggle" onClick={() => setDrawerOpen(true)} aria-label="Open cart">
         <CartIcon />
         {totalItems > 0 && <span className="cart-count">{totalItems}</span>}

@@ -14,7 +14,7 @@ function Stars({ rating }) {
 export default function ReviewTiles({ reviews, title, subtitle }) {
   if (!reviews || reviews.length === 0) return null;
   return (
-    <section className="reviews-section">
+    <section className="reviews-section" id="reviews">
       <h2 className="reviews-title">{title}</h2>
       {subtitle ? <p className="reviews-subtitle">{subtitle}</p> : null}
       <div className="review-grid">
