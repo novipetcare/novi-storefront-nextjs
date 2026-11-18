@@ -20,7 +20,6 @@ export default function Hero({ content }) {
           </a>
         </div>
         <div className="hero-v2-art">
-          <span className="hero-v2-pool" aria-hidden="true" />
           <Image
             src="/images/novi-range-banner-mobile.webp"
             width={900}
