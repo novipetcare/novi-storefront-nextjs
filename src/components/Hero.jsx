@@ -7,9 +7,6 @@ export default function Hero({ content }) {
         <p className="hero-subtitle">
           {content.hero_subtitle || "Pure care for precious paws — finally formulated for India."}
         </p>
-        {content.preorder_hero_text && (
-          <p className="preorder-hero-note">{content.preorder_hero_text}</p>
-        )}
         <div className="trust-tags">
           {["Sulphate-Free", "Paraben-Free", "pH Balanced", "Cruelty-Free", "Made in India"].map((tag) => (
             <span key={tag} className="trust-tag">

@@ -1042,36 +1042,3 @@ a:focus-visible {
 .legal-content .contact-details p {
   margin: 0.5rem 0;
 }
-
-/* ---- Pre-order feature ---- */
-.preorder-banner {
-  background: var(--forest-deep, #2b4433);
-  color: #ffffff;
-  text-align: center;
-  padding: 0.6rem 1rem;
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-.preorder-hero-note {
-  font-size: 0.9rem;
-  color: var(--forest, #2b4433);
-  background: var(--cream-dark, #eef2e7);
-  display: inline-block;
-  padding: 0.4rem 0.9rem;
-  border-radius: 999px;
-  margin-top: 0.5rem;
-}
-.preorder-product-note {
-  font-size: 0.8rem;
-  color: var(--forest, #2b4433);
-  font-weight: 500;
-  margin: 0.3rem 0 0;
-}
-.preorder-checkout-note {
-  font-size: 0.85rem;
-  background: var(--cream-dark, #eef2e7);
-  color: var(--forest, #2b4433);
-  padding: 0.7rem 0.9rem;
-  border-radius: var(--radius-sm, 8px);
-  margin: 0.5rem 0;
-}
