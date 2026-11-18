@@ -1,6 +1,7 @@
 import "./globals.css";
 import { CartProvider } from "../lib/CartContext.jsx";
 import Header from "../components/Header.jsx";
+import AnnouncementBar from "../components/AnnouncementBar.jsx";
 import Footer from "../components/Footer.jsx";
 import CartDrawer from "../components/CartDrawer.jsx";
 import EmailPopup from "../components/EmailPopup.jsx";
@@ -66,6 +67,7 @@ export default async function RootLayout({ children }) {
       </head>
       <body>
         <CartProvider>
+          <AnnouncementBar />
           <Header />
           {children}
           <Footer />

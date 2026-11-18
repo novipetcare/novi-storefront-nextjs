@@ -1,20 +1,15 @@
-import { Fraunces, Inter } from "next/font/google";
+import { Young_Serif, Figtree } from "next/font/google";
 
-// Self-hosts these fonts on your own domain at build time, instead of
-// fetching them from Google's servers as a separate render-blocking
-// request — this is what was causing the "render-blocking requests"
-// warning in PageSpeed. The variable names match exactly what
-// globals.css already expects (--font-display, --font-body), so no
-// other CSS changes are needed.
-export const fraunces = Fraunces({
+// Headings: Young Serif (warm, sturdy). Body: Figtree (friendly, clear).
+// Variable names stay --font-display / --font-body so the CSS keeps working.
+export const fraunces = Young_Serif({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
+  weight: ["400"],
   variable: "--font-display",
   display: "swap",
 });
 
-export const inter = Inter({
+export const inter = Figtree({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-body",

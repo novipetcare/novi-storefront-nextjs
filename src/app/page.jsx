@@ -1,5 +1,5 @@
 import Hero from "../components/Hero.jsx";
-import RangeBanner from "../components/RangeBanner.jsx";
+import PawTrail from "../components/PawTrail.jsx";
 import RoutinePicker from "../components/RoutinePicker.jsx";
 import RoutineSteps from "../components/RoutineSteps.jsx";
 import NeedTiles from "../components/NeedTiles.jsx";
@@ -62,9 +62,10 @@ export default async function HomePage() {
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Hero content={content} />
-      <RangeBanner />
+      <PawTrail variant="mixed" />
       <NeedTiles />
       <RoutinePicker products={products} />
+      <PawTrail variant="clean" />
       <FormulaGrid products={products} />
       <TrustBadges />
       <RoutineSteps />
