@@ -8,8 +8,8 @@ const P = {
 const BADGES = [
   {
     enabled: true,
-    title: "Secure payments",
-    text: "UPI, cards and net banking via Razorpay",
+    title: "100% Secure Payments",
+    text: "Encrypted checkout via Razorpay (UPI, cards, net banking)",
     icon: (
       <svg {...P}>
         <rect x="4.5" y="10.5" width="15" height="10" rx="2" />

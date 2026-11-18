@@ -1289,3 +1289,13 @@ a:focus-visible {
   font-size: 0.82rem;
   line-height: 1.4;
 }
+
+.secure-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 0.75rem 0 0;
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+}
