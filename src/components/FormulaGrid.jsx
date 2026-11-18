@@ -8,7 +8,7 @@ export default function FormulaGrid({ products }) {
         <h2>Choose your dog's formula.</h2>
       </div>
 
-      <div className="formula-grid">
+      <div className="formula-grid" data-count={products.length}>
         {products.map((product, index) => (
           <FormulaCard key={product.id} product={product} index={index} />
         ))}
