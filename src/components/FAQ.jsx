@@ -16,6 +16,7 @@ export default function FAQ() {
       <div className="faq-list">
         {FAQS.map((item, i) => (
           <div className="faq-item" key={item.q}>
+            {(i === 0 || FAQS[i - 1].group !== item.group) && <h3 className="faq-group">{item.group}</h3>}
             <button
               className="faq-question"
               onClick={() => setOpenIndex(openIndex === i ? null : i)}
@@ -24,7 +25,17 @@ export default function FAQ() {
               {item.q}
               <span className="faq-toggle">{openIndex === i ? "−" : "+"}</span>
             </button>
-            {openIndex === i && <p className="faq-answer">{item.a}</p>}
+            {openIndex === i && (
+              <p className="faq-answer">
+                {item.a}
+                {item.link && (
+                  <>
+                    {" "}
+                    <a href={item.link.href} target="_blank" rel="noopener noreferrer" className="faq-link">{item.link.label}</a>
+                  </>
+                )}
+              </p>
+            )}
           </div>
         ))}
       </div>
