@@ -125,7 +125,6 @@ export default function PartnerClient() {
         <div><span>Paid to you</span><strong>₹{rs(s.paid_out_paise)}</strong></div>
         <div className="partner-highlight"><span>To be paid</span><strong>₹{rs(s.payable_paise)}</strong></div>
       </div>
-      <p className="partner-muted">Earnings stay pending until {data.return_window_days} days after the order is delivered, then become confirmed. Cancelled orders earn nothing.</p>
 
       <h2>Your coupon codes</h2>
       <ul className="partner-coupons">
