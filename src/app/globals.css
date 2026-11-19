@@ -1447,3 +1447,39 @@ h1, h2, h3 { font-weight: 400; }
 .faq-group { font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; color: var(--forest); margin: 1.8rem 0 0.4rem; }
 .faq-list > .faq-item:first-child .faq-group { margin-top: 0; }
 .faq-link { color: var(--forest); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Coupon box (checkout) */
+.coupon-box { margin: 1rem 0 0.6rem; }
+.coupon-box label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.4rem; color: var(--forest); }
+.coupon-row { display: flex; gap: 0.5rem; }
+.coupon-row input { flex: 1; min-width: 0; padding: 0.65rem 0.8rem; border: 1px solid var(--cream-dark); border-radius: 8px; font: inherit; letter-spacing: 0.06em; text-transform: uppercase; background: #fff; }
+.coupon-btn { padding: 0.65rem 1.1rem; border: 0; border-radius: 8px; background: var(--forest); color: #fff; font-weight: 600; cursor: pointer; }
+.coupon-btn:disabled { opacity: 0.5; cursor: default; }
+.coupon-ok { color: #1f6b3a; font-size: 0.88rem; margin: 0.4rem 0 0; }
+.coupon-err { color: #b3261e; font-size: 0.88rem; margin: 0.4rem 0 0; }
+.coupon-line { color: #1f6b3a; font-weight: 600; }
+
+/* Partner (influencer) dashboard */
+.partner-page { max-width: 440px; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+.partner-page.partner-wide { max-width: 980px; }
+.partner-card { display: flex; flex-direction: column; gap: 0.9rem; background: #fff; border: 1px solid var(--cream-dark); border-radius: 14px; padding: 1.6rem; }
+.partner-card h1, .partner-head h1 { font-family: var(--font-display); font-weight: 400; color: var(--forest); font-size: 1.8rem; margin: 0; }
+.partner-card label { display: flex; flex-direction: column; gap: 0.3rem; font-weight: 600; font-size: 0.9rem; color: var(--forest); }
+.partner-card input { padding: 0.7rem 0.8rem; border: 1px solid var(--cream-dark); border-radius: 8px; font: inherit; }
+.partner-btn { padding: 0.8rem 1rem; border: 0; border-radius: 999px; background: var(--saffron); color: var(--forest-deep); font-weight: 700; cursor: pointer; }
+.partner-btn:disabled { opacity: 0.6; }
+.partner-muted { color: var(--ink-muted, #5b6b63); font-size: 0.92rem; margin: 0; }
+.partner-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.2rem; }
+.partner-link { background: none; border: 0; text-decoration: underline; color: var(--forest); cursor: pointer; font: inherit; }
+.partner-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.8rem; margin: 1rem 0; }
+.partner-stats > div { background: #fff; border: 1px solid var(--cream-dark); border-radius: 12px; padding: 0.9rem 1rem; display: flex; flex-direction: column; gap: 0.25rem; }
+.partner-stats span { font-size: 0.82rem; color: var(--ink-muted, #5b6b63); }
+.partner-stats strong { font-size: 1.25rem; color: var(--forest); }
+.partner-stats .partner-highlight { background: var(--forest); }
+.partner-stats .partner-highlight span, .partner-stats .partner-highlight strong { color: #fff; }
+.partner-page h2 { font-family: var(--font-display); font-weight: 400; color: var(--forest); font-size: 1.3rem; margin: 2rem 0 0.6rem; }
+.partner-coupons { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.4rem; }
+.partner-table-wrap { overflow-x: auto; }
+.partner-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; font-size: 0.92rem; }
+.partner-table th, .partner-table td { text-align: left; padding: 0.65rem 0.8rem; border-bottom: 1px solid var(--cream-dark); white-space: nowrap; }
+.partner-table th { background: var(--cream-dark); font-weight: 600; }

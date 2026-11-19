@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useCart } from "../../lib/CartContext.jsx";
@@ -25,6 +25,35 @@ export default function CheckoutPage() {
   const [pincodeLookup, setPincodeLookup] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [couponInput, setCouponInput] = useState("");
+  const [coupon, setCoupon] = useState(null); // { code, discount_percent, discount_amount, total_amount }
+  const [couponMsg, setCouponMsg] = useState("");
+  const [couponBusy, setCouponBusy] = useState(false);
+
+  // The discount shown here is only a preview. The server recalculates it
+  // from its own prices when the order is created, and that is what is charged.
+  const payable = coupon ? coupon.total_amount : totalAmount;
+
+  async function checkCoupon(code, silent = false) {
+    setCouponBusy(true);
+    if (!silent) setCouponMsg("");
+    try {
+      const r = await clientApi.validateCoupon(code, items);
+      setCoupon(r);
+      setCouponMsg(silent ? "" : `${r.code} applied: ${r.discount_percent}% off.`);
+    } catch (err) {
+      setCoupon(null);
+      setCouponMsg(err.message);
+    } finally {
+      setCouponBusy(false);
+    }
+  }
+
+  // Cart changed after a code was applied: re-check it against the new cart.
+  useEffect(() => {
+    if (coupon) checkCoupon(coupon.code, true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items]);
 
   function updateField(field, value) {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -86,6 +115,7 @@ export default function CheckoutPage() {
         ...form,
         items: items.map((i) => ({ product_id: i.id, name: i.name, qty: i.qty, price: i.price })),
         total_amount: totalAmount,
+        coupon_code: coupon ? coupon.code : undefined,
       });
 
       const { razorpay_order_id, amount, currency, key_id } = await clientApi.createRazorpayOrder(order_id);
@@ -218,7 +248,7 @@ export default function CheckoutPage() {
           {error && <div className="error-text">{error}</div>}
 
           <button type="submit" className="checkout-btn" disabled={submitting}>
-            {submitting ? "Processing..." : `Pay Now — ₹${(totalAmount / 100).toFixed(0)}`}
+            {submitting ? "Processing..." : `Pay Now — ₹${(payable / 100).toFixed(0)}`}
           </button>
           <p className="secure-note">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -240,9 +270,38 @@ export default function CheckoutPage() {
               <span>₹{((item.price * item.qty) / 100).toFixed(0)}</span>
             </div>
           ))}
+          <div className="coupon-box">
+            <label htmlFor="coupon-code">Have a coupon code?</label>
+            <div className="coupon-row">
+              <input
+                id="coupon-code"
+                value={couponInput}
+                onChange={(e) => setCouponInput(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ""))}
+                placeholder="Enter code"
+                maxLength={20}
+                autoComplete="off"
+              />
+              <button type="button" className="coupon-btn" disabled={couponBusy || !couponInput} onClick={() => checkCoupon(couponInput)}>
+                {couponBusy ? "Checking..." : "Apply"}
+              </button>
+            </div>
+            {couponMsg && <p className={coupon ? "coupon-ok" : "coupon-err"} role="status">{couponMsg}</p>}
+          </div>
+          {coupon && (
+            <>
+              <div className="summary-line">
+                <span>Subtotal</span>
+                <span>₹{(coupon.subtotal_amount / 100).toFixed(0)}</span>
+              </div>
+              <div className="summary-line coupon-line">
+                <span>Coupon {coupon.code} ({coupon.discount_percent}% off)</span>
+                <span>−₹{(coupon.discount_amount / 100).toFixed(0)}</span>
+              </div>
+            </>
+          )}
           <div className="summary-line total">
             <span>Total</span>
-            <span>₹{(totalAmount / 100).toFixed(0)}</span>
+            <span>₹{(payable / 100).toFixed(0)}</span>
           </div>
         </div>
       </div>
