@@ -112,7 +112,7 @@ export default function PartnerClient() {
       <div className="partner-head">
         <div>
           <h1>Hi {data.influencer.name}</h1>
-          <p className="partner-muted">Your commission: {data.influencer.commission_percent}% of sales after the discount, excluding GST. Updates live.</p>
+          <p className="partner-muted">Your commission: {data.influencer.commission_percent}% {data.influencer.commission_basis === "net" ? "of sales after the discount, excluding GST" : "of the product MRP on every order"}. Updates live.</p>
         </div>
         <button className="partner-link" onClick={logout}>Log out</button>
       </div>
