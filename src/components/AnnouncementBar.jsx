@@ -2,7 +2,7 @@
 export default function AnnouncementBar() {
   return (
     <div className="announce">
-      Dog shampoo made in India &nbsp;|&nbsp; Sulphate-free &amp; paraben-free &nbsp;|&nbsp; Secure payments via Razorpay
+      Dog shampoo made in India &nbsp;|&nbsp; Sulphate-free &amp; paraben-free &nbsp;|&nbsp; 100% secure payments
     </div>
   );
 }

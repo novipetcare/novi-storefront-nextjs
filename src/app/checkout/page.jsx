@@ -126,7 +126,7 @@ export default function CheckoutPage() {
         amount,
         currency,
         name: "NOVI",
-        description: `Order #${order_id}`,
+        description: "NOVI dog shampoo",
         prefill: {
           name: form.customer_name,
           email: form.customer_email || undefined,
@@ -255,9 +255,8 @@ export default function CheckoutPage() {
               <rect x="4.5" y="10.5" width="15" height="10" rx="2" />
               <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" />
             </svg>
-            100% Secure Payments · Encrypted checkout via Razorpay
+            100% Secure Payments · Encrypted checkout
           </p>
-          <p className="hint-text payment-note">Secure payment powered by Razorpay.</p>
         </form>
 
         <div className="order-summary">
