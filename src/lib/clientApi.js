@@ -20,7 +20,21 @@ async function request(path, options = {}) {
   return data;
 }
 
+function authed(token) {
+  return { headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` } };
+}
+
 export const clientApi = {
+  validateCoupon: (code, items) =>
+    request("/api/coupons/validate", {
+      method: "POST",
+      body: JSON.stringify({ code, items: items.map((i) => ({ product_id: i.id, qty: i.qty })) }),
+    }),
+  partnerLogin: (username, password) =>
+    request("/api/influencer/login", { method: "POST", body: JSON.stringify({ username, password }) }),
+  partnerChangePassword: (token, current_password, new_password) =>
+    request("/api/influencer/change-password", { method: "POST", body: JSON.stringify({ current_password, new_password }), ...authed(token) }),
+  partnerDashboard: (token) => request("/api/influencer/dashboard", authed(token)),
   subscribe: (email) => request("/api/subscribe", { method: "POST", body: JSON.stringify({ email }) }),
   createOrder: (order) => request("/api/orders", { method: "POST", body: JSON.stringify(order) }),
   createRazorpayOrder: (order_id) =>
