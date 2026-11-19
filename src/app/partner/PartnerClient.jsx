@@ -139,9 +139,9 @@ export default function PartnerClient() {
         <table className="partner-table">
           <thead><tr><th>Date</th><th>No.</th><th>City</th><th>Order total</th><th>Your earning</th><th>Status</th></tr></thead>
           <tbody>
-            {data.orders.map((o, idx) => (
-              <tr key={o.order_id}>
-                <td>{o.date}</td><td>{data.orders.length - idx}</td><td>{o.city}</td>
+            {data.orders.map((o) => (
+              <tr key={o.n}>
+                <td>{o.date}</td><td>{o.n}</td><td>{o.city}</td>
                 <td>₹{rs(o.order_total_paise)}</td><td>₹{rs(o.commission_paise)}</td><td>{STATUS[o.status]}</td>
               </tr>
             ))}

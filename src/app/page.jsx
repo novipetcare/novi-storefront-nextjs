@@ -60,7 +60,7 @@ export default async function HomePage() {
 
   return (
     <main>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }} />
       <Hero content={content} />
       <PawTrail variant="mixed" />
       <NeedTiles />

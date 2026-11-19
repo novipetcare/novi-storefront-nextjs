@@ -62,7 +62,7 @@ export default async function RootLayout({ children }) {
         <script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c") }}
         />
       </head>
       <body>
