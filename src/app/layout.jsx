@@ -5,6 +5,7 @@ import AnnouncementBar from "../components/AnnouncementBar.jsx";
 import Footer from "../components/Footer.jsx";
 import CartDrawer from "../components/CartDrawer.jsx";
 import EmailPopup from "../components/EmailPopup.jsx";
+import CouponLink from "../components/CouponLink.jsx";
 import { fraunces, inter } from "../lib/fonts.js";
 
 const SITE_URL = "https://novipets.in";
@@ -73,6 +74,7 @@ export default async function RootLayout({ children }) {
           <Footer />
           <CartDrawer />
           <EmailPopup />
+          <CouponLink />
         </CartProvider>
       </body>
     </html>

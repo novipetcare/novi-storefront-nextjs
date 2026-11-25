@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useCart } from "../../lib/CartContext.jsx";
 import { clientApi } from "../../lib/clientApi.js";
+import { readSavedCoupon } from "../../components/CouponLink.jsx";
 
 export default function CheckoutPage() {
   const { items, totalAmount, clearCart } = useCart();
@@ -48,6 +49,19 @@ export default function CheckoutPage() {
       setCouponBusy(false);
     }
   }
+
+  // Arrived through a coupon link (?coupon=CODE): apply the saved code once the cart has items.
+  const triedSaved = useRef(false);
+  useEffect(() => {
+    if (triedSaved.current || coupon || items.length === 0) return;
+    const saved = readSavedCoupon();
+    triedSaved.current = true;
+    if (saved) {
+      setCouponInput(saved);
+      checkCoupon(saved);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items]);
 
   // Cart changed after a code was applied: re-check it against the new cart.
   useEffect(() => {
